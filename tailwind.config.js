@@ -21,6 +21,12 @@ export default {
       },
       fontFamily:{
         'poppins':["Poppins", ...defaultTheme.fontFamily.sans],
+      },
+      backgroundImage: {
+        'banner1': "url('/src/assets/banner-item-01.jpg')",
+        'banner2': "url('/src/assets/banner-item-02.jpg')",
+        'banner3': "url('/src/assets/banner-item-03.jpg')",
+        
       }
     },
   },
