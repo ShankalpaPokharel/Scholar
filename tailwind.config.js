@@ -26,7 +26,7 @@ export default {
         'banner1': "url('/src/assets/banner-item-01.jpg')",
         'banner2': "url('/src/assets/banner-item-02.jpg')",
         'banner3': "url('/src/assets/banner-item-03.jpg')",
-        
+        'bannerback': "url('/src/assets/banner-bg.jpg')",
       }
     },
   },
