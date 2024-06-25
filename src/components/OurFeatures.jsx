@@ -14,7 +14,7 @@ export default function OurFeatures() {
             <img className="max-w-[86px] delay-150 hover:-translate-y-1" src={service1} alt="" />
           </div>
           {/* content  */}
-          <div className="mb-8 mr-20 rounded-3xl bg-[#F1F0FE] px-8 pb-12 pt-20 text-black mt-[95px]">
+          <div className="mb-8 mr-20 rounded-3xl bg-lightbg px-8 pb-12 pt-20 text-black mt-[95px]">
             <h4 className="mb-4 text-2xl font-semibold">Online Degrees</h4>
             <p className="mb-6 text-sm text-[#4a4a4a]">Whenever you need free templates in HTML CSS, you just remember TemplateMo website.</p>
             <div className="flex w-fit items-center justify-center rounded-3xl bg-white px-6 text-sm font-medium leading-10 text-primary">
@@ -32,7 +32,7 @@ export default function OurFeatures() {
             <img className="max-w-[86px] delay-150 hover:-translate-y-1" src={service2} alt="" />
           </div>
           {/* content  */}
-          <div className="mb-8 mr-20 rounded-3xl bg-[#F1F0FE] px-8 pb-12 pt-20 text-black mt-[95px]">
+          <div className="mb-8 mr-20 rounded-3xl bg-lightbg px-8 pb-12 pt-20 text-black mt-[95px]">
             <h4 className="mb-4 text-2xl font-semibold">Short Courses</h4>
             <p className="mb-6 text-sm text-[#4a4a4a]">You can browse free templates based on different tags such as digital marketing, etc.</p>
             <div className="flex w-fit items-center justify-center rounded-3xl bg-white px-6 text-sm font-medium leading-10 text-primary">
@@ -50,7 +50,7 @@ export default function OurFeatures() {
             <img className="max-w-[86px] delay-150 hover:-translate-y-1"  src={service3} alt="" />
           </div>
           {/* content  */}
-          <div className="mb-8 mr-20 rounded-3xl bg-[#F1F0FE] px-8 pb-12 pt-20 text-black mt-[95px]">
+          <div className="mb-8 mr-20 rounded-3xl bg-lightbg px-8 pb-12 pt-20 text-black mt-[95px]">
             <h4 className="mb-4 text-2xl font-semibold">Web Experts</h4>
             <p className="mb-6 text-sm text-[#4a4a4a]">You can start learning HTML CSS by modifying free templates from our website too.
 

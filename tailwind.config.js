@@ -10,7 +10,8 @@ export default {
       colors:{
         primary:'#7a6ad8',
         secondary:'#f1f0fe',
-        'inputbackground':'#ffffff1a'
+        'inputbackground':'#ffffff1a',
+        'lightbg':'#F1F0FE'
       },
       screens:{
         'sm':'576px',
