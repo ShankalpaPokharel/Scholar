@@ -11,7 +11,8 @@ export default {
         primary:'#7a6ad8',
         secondary:'#f1f0fe',
         'inputbackground':'#ffffff1a',
-        'lightbg':'#F1F0FE'
+        'lightbg':'#F1F0FE',
+        'textlight':'#4a4a4a'
       },
       screens:{
         'sm':'576px',
