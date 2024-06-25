@@ -8,9 +8,14 @@
   .container{
     @apply max-w-[540px] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] 2xl:max-w-[1320px]  mx-auto p-4
   }
+  .about-us::before {
+    @apply absolute top-0 bottom-0 right-0 z-[-1] w-[84%] h-full bg-[#f1f0fe] content-[''];
+    border-top-left-radius: 500px;
+    border-bottom-left-radius: 500px;
+  }
 }
 
-.about-us::before {
+/* .about-us::before {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -22,4 +27,4 @@
   content: '';
   border-top-left-radius: 500px;
   border-bottom-left-radius: 500px;
-}
+} */

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Aboutus, HeroPart, Navbar, OurFeatures } from '../components'
+import { Aboutus, HeroPart, LatestCourses, Navbar, OurFeatures } from '../components'
 
 export default function LandingPage() {
   return (
@@ -10,6 +10,7 @@ export default function LandingPage() {
     </div>
     <OurFeatures/>
     <Aboutus/>
+    <LatestCourses/>
    </>
   )
 }

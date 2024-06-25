@@ -38,7 +38,7 @@ export default function Aboutus() {
 
   return (
     <div className="relative mt-32">
-      <div className="about-us container">
+      <div className="lg:about-us container">
         <div className="lg:flex">
           {/* accordion container */}
 
@@ -65,12 +65,12 @@ export default function Aboutus() {
           {/* accordion container end */}
 
           {/* about us container  */}
-          <div className="w-[42%]">
+          <div className="lg:w-[42%]">
             <div className="mt-32 lg:mt-0 lg:ml-[60px]">
               <h6 className="text-sm font-semibold text-primary">ABOUT US</h6>
               <h2 className="my-5 text-4xl font-semibold capitalize leading-10">What make us the best academy online?</h2>
               <p className="mt-7 lg:mt-12 text-sm leading-7 text-textlight">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravid risus commodo.</p>
-              <div class="mt-7  flex w-fit items-center justify-center rounded-3xl bg-primary lg:bg-white px-6 text-white lg:text-primary lg:mt-12">
+              <div className="mt-7  flex w-fit items-center justify-center rounded-3xl bg-primary lg:bg-white px-6 text-white lg:text-primary lg:mt-12">
                 <span className="text-sm font-medium leading-10">Discover More</span>
               </div>
             </div>
