@@ -1,7 +1,7 @@
 import React from "react";
 // import courseimage1 from "../assets/course-01.jpg";
 
-export default function CourseItem({course}) {
+export default function CourseItem({ course }) {
   return (
     <div className="group cursor-pointer overflow-hidden rounded-3xl bg-lightbg">
       <div className="relative h-[385px] w-full">

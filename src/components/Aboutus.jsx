@@ -42,10 +42,10 @@ export default function Aboutus() {
         <div className="lg:flex">
           {/* accordion container */}
 
-          <div className="lg:w-1/2 lg:ml-[8%]">
-            <div className="-my-10 rounded-[40px] bg-primary px-6 pb-4  pt-10 lg:px-12 lg:pb-12 lg:pt-20">
+          <div className="lg:ml-[8%] lg:w-1/2">
+            <div className="-my-10 rounded-[40px] bg-primary px-6 pb-4 pt-10 lg:px-12 lg:pb-12 lg:pt-20">
               {accordionContent.map((el) => (
-                <div className="mb-7 rounded-[40px]  bg-white" key={el.id}>
+                <div className="mb-7 rounded-[40px] bg-white" key={el.id}>
                   {/* title  */}
                   <div className="flex items-center justify-between px-6 py-4 text-base font-semibold">
                     <h2 className="text-black">{el.question}</h2>
@@ -66,11 +66,11 @@ export default function Aboutus() {
 
           {/* about us container  */}
           <div className="lg:w-[42%]">
-            <div className="mt-32 lg:mt-0 lg:ml-[60px]">
+            <div className="mt-32 lg:ml-[60px] lg:mt-0">
               <h6 className="text-sm font-semibold text-primary">ABOUT US</h6>
               <h2 className="my-5 text-4xl font-semibold capitalize leading-10">What make us the best academy online?</h2>
-              <p className="mt-7 lg:mt-12 text-sm leading-7 text-textlight">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravid risus commodo.</p>
-              <div className="mt-7  flex w-fit items-center justify-center rounded-3xl bg-primary lg:bg-white px-6 text-white lg:text-primary lg:mt-12">
+              <p className="mt-7 text-sm leading-7 text-textlight lg:mt-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravid risus commodo.</p>
+              <div className="mt-7 flex w-fit items-center justify-center rounded-3xl bg-primary px-6 text-white lg:mt-12 lg:bg-white lg:text-primary">
                 <span className="text-sm font-medium leading-10">Discover More</span>
               </div>
             </div>
@@ -78,7 +78,6 @@ export default function Aboutus() {
           {/* about us container end  */}
         </div>
       </div>
-    
     </div>
   );
 }

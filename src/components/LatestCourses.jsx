@@ -54,19 +54,15 @@ export default function LatestCourses() {
     },
   ];
 
-  const [flatestCourses, setFlatestCourses] = useState(latestCourses)
+  const [flatestCourses, setFlatestCourses] = useState(latestCourses);
 
-  const filterCourse=(category)=>{
-    if(category==="all"){
-        setFlatestCourses(latestCourses)
-        return
+  const filterCourse = (category) => {
+    if (category === "all") {
+      setFlatestCourses(latestCourses);
+      return;
     }
-    setFlatestCourses(latestCourses.filter(course => course.category === category))
-  }
-
-
-
-
+    setFlatestCourses(latestCourses.filter((course) => course.category === category));
+  };
 
   return (
     <div className="mt-24 pt-8 lg:mt-36">
@@ -80,10 +76,10 @@ export default function LatestCourses() {
 
         {/* filter start */}
         <ul className="mx-auto mb-16 flex max-w-fit items-center justify-between whitespace-nowrap rounded-[50px] bg-lightbg px-2 py-4 [&_li]:mx-4 [&_li]:cursor-pointer">
-          <li onClick={()=>filterCourse("all")}>Show All</li>
-          <li onClick={()=>filterCourse("WEBDESIGN")}>Webdesign</li>
-          <li onClick={()=>filterCourse("DEVELOPMENT")}>Development</li>
-          <li onClick={()=>filterCourse("WORDPRESS")}>Wordpress</li>
+          <li onClick={() => filterCourse("all")}>Show All</li>
+          <li onClick={() => filterCourse("WEBDESIGN")}>Webdesign</li>
+          <li onClick={() => filterCourse("DEVELOPMENT")}>Development</li>
+          <li onClick={() => filterCourse("WORDPRESS")}>Wordpress</li>
         </ul>
         {/* filter end  */}
 
