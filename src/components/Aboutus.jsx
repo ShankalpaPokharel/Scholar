@@ -48,7 +48,7 @@ export default function Aboutus() {
                 <div className="mb-7 rounded-[40px]  bg-white" key={el.id}>
                   {/* title  */}
                   <div className="flex items-center justify-between px-6 py-4 text-base font-semibold">
-                    <h2 className="text-primary">{el.question}</h2>
+                    <h2 className="text-black">{el.question}</h2>
                     <div className="flex items-center justify-center rounded-full bg-primary p-2 text-white" onClick={() => handleToggle(el.id)}>
                       {openSection == el.id ? <FaMinus className="inline-block" /> : <FaPlus className="inline-block" />}
                     </div>
