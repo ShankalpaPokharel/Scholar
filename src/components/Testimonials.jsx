@@ -21,14 +21,12 @@ export default function Testimonials() {
   const next = () => {
     if (sliderRef.current) {
       sliderRef.current.slickNext();
-      setClickedbutton(2);
     }
   };
 
   const previous = () => {
     if (sliderRef.current) {
       sliderRef.current.slickPrev();
-      setClickedbutton(1);
     }
   };
   return (
