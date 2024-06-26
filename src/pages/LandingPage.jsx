@@ -1,5 +1,5 @@
 import React from "react";
-import { Aboutus, Facts, HeroPart, LatestCourses, Navbar, OurFeatures } from "../components";
+import { Aboutus, Facts, HeroPart, LatestCourses, Navbar, OurFeatures, Team } from "../components";
 
 export default function LandingPage() {
   return (
@@ -12,6 +12,7 @@ export default function LandingPage() {
       <Aboutus />
       <LatestCourses />
       <Facts />
+      <Team />
     </>
   );
 }
