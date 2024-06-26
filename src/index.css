@@ -13,6 +13,9 @@
     border-top-left-radius: 500px;
     border-bottom-left-radius: 500px;
   }
+  .testimonials::before{
+    @apply absolute top-0 right-0 w-[65%] rounded-l-[500px] h-full bottom-0 bg-lightbg content-['']
+  }
 }
 
 /* .about-us::before {
