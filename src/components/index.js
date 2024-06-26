@@ -8,6 +8,6 @@ import Team from "./Team";
 import Testimonials from "./Testimonials";
 import Schedule from "./Schedule";
 import Contactus from "./Contactus";
+import Footer from "./Footer";
 
-
-export {HeroPart,Navbar,OurFeatures,Aboutus,LatestCourses,Facts,Team,Testimonials,Schedule, Contactus}
+export {HeroPart,Navbar,OurFeatures,Aboutus,LatestCourses,Facts,Team,Testimonials,Schedule, Contactus, Footer}
