@@ -6,6 +6,7 @@ import LatestCourses from "./LatestCourses";
 import Facts from "./Facts";
 import Team from "./Team";
 import Testimonials from "./Testimonials";
+import Schedule from "./Schedule";
 
 
-export {HeroPart,Navbar,OurFeatures,Aboutus,LatestCourses,Facts,Team,Testimonials}
+export {HeroPart,Navbar,OurFeatures,Aboutus,LatestCourses,Facts,Team,Testimonials,Schedule}
