@@ -16,6 +16,9 @@
   .testimonials::before{
     @apply absolute top-0 right-0 w-[65%] rounded-l-[500px] h-full bottom-0 bg-lightbg content-['']
   }
+  .contactus::before{
+    @apply z-[-1] absolute top-0 left-0 w-[65%] rounded-r-[500px] h-full bottom-0 bg-lightbg content-['']
+  }
 }
 
 /* .about-us::before {
