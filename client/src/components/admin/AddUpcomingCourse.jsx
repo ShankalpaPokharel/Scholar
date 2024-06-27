@@ -1,20 +1,43 @@
 import React, { useState } from "react";
 
+import axios from "axios"
+import {apiUrl} from "../../constant/variables"
+
 export default function AddUpcomingCourse() {
   const [addSuccess, setAddSuccess] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setAddSuccess(false);
+
     const category = e.target.category.value;
     const date = e.target.date.value;
     const duration = e.target.duration.value;
     const price = e.target.price.value;
     const image = e.target.image.files[0];
-    const course = { category, date, duration, price, image };
-    console.log(course)
-    setAddSuccess(true);
-  };
+
+    const formData = new FormData();
+    formData.append('category', category);
+    formData.append('date', date);
+    formData.append('duration', duration);
+    formData.append('price', price);
+    formData.append('image', image);
+
+    console.log([...formData]); // Log the form data to see what will be sent
+
+    axios.post(`${apiUrl}/admin/addupc`, formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    })
+    .then((response) => {
+        console.log("Response data", response.data);
+        setAddSuccess(true);
+    })
+    .catch((error) => {
+        console.log("error", error);
+    });
+};
 
   return (
     <div className="flex h-full flex-1 items-center justify-center bg-lightbg p-5">

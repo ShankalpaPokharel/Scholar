@@ -1,20 +1,46 @@
 import React, { useState } from "react";
 
+import axios from "axios";
+import { apiUrl } from "../../constant/variables";
+
 export default function AddTeacher() {
-  const [addSuccess, setAddSuccess] = useState(false)
+  const [addSuccess, setAddSuccess] = useState(false);
+
   const handleSubmit = (e) => {
-    e.preventDefault();
-    setAddSuccess(false)
-    const name = e.target.name.value;
-    const field = e.target.field.value;
-    const image = e.target.image.files[0];
-    const facebook = e.target.facebook.value;
-    const twitter = e.target.twitter.value;
-    const linkedin = e.target.linkedin.value;
-    const teacher = { name, field, image, facebook, twitter, linkedin }
-    console.log(teacher)
-    setAddSuccess(true)
+      e.preventDefault();
+      setAddSuccess(false);
+
+      const name = e.target.name.value;
+      const field = e.target.field.value;
+      const image = e.target.image.files[0];
+      const facebook = e.target.facebook.value || '';
+      const twitter = e.target.twitter.value || '';
+      const linkedin = e.target.linkedin.value || '';
+
+      const formData = new FormData();
+      formData.append('name', name);
+      formData.append('field', field);
+      formData.append('image', image);
+      formData.append('facebook', facebook);
+      formData.append('twitter', twitter);
+      formData.append('linkedin', linkedin);
+
+      // console.log([...formData]); // Log the form data to see what will be sent
+
+      axios.post(`${apiUrl}/admin/addTeacher`, formData, {
+          headers: {
+              'Content-Type': 'multipart/form-data',
+          },
+      })
+      .then((response) => {
+          console.log("Response data", response.data);
+          setAddSuccess(true);
+      })
+      .catch((error) => {
+          console.log("error", error);
+      });
   };
+
   return (
     <div className="flex h-full flex-1 items-center justify-center bg-lightbg p-5">
       <div className="">

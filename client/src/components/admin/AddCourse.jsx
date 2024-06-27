@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import axios from "axios"
+
+import { apiUrl } from "../../constant/variables";
 
 export default function AddCourse() {
   const [addSuccess, setAddSuccess] = useState(false);
@@ -13,12 +16,29 @@ export default function AddCourse() {
     const title = e.target.title.value;
     const image = e.target.image.files[0];
 
-    const course = { category, price, instructor, title, image };
+    const formData = new FormData();
+    formData.append('category', category);
+    formData.append('price', price);
+    formData.append('instructor', instructor);
+    formData.append('title', title);
+    formData.append('image', image);
 
-    console.log(course)
-    setAddSuccess(true)
-    
-  };
+    console.log([...formData]); // Log the form data to see what will be sent
+
+    axios.post(`${apiUrl}/admin/addCourse`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+    .then((response) => {
+      console.log("Response data", response.data);
+      setAddSuccess(true);
+    })
+    .catch(error => {
+      console.log("error", error);
+    });
+};
+
 
   return (
     <div className="flex h-full flex-1 items-center justify-center bg-lightbg p-5">
