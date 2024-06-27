@@ -1,58 +1,63 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { apiUrl } from "../constant/variables";
+
 import courseimage1 from "../assets/course-01.jpg";
 import CourseItem from "./CourseItem";
 
 export default function LatestCourses() {
-  const latestCourses = [
-    {
-      _id: 1,
-      category: "WEBDESIGN",
-      price: 160,
-      instructor: "Stella Blair",
-      title: "Learn Web Design",
-      image: courseimage1,
-    },
-    {
-      _id: 2,
-      category: "DEVELOPMENT",
-      price: 340,
-      instructor: "Cindy Walker",
-      title: "Web Development Tips",
-      image: courseimage1,
-    },
-    {
-      _id: 3,
-      category: "WORDPRESS",
-      price: 640,
-      instructor: "David Hutson",
-      title: "Latest Web Trends",
-      image: courseimage1,
-    },
-    {
-      _id: 4,
-      category: "DEVELOPMENT",
-      price: 450,
-      instructor: "Stella Blair",
-      title: "Online Learning Steps",
-      image: courseimage1,
-    },
-    {
-      _id: 5,
-      category: "WORDPRESS",
-      price: 320,
-      instructor: "Sophia Rose",
-      title: "Be a WordPress Master",
-      image: courseimage1,
-    },
-    {
-      _id: 6,
-      category: "WEBDESIGN",
-      price: 240,
-      instructor: "David Hutson",
-      title: "Full Stack Developer",
-      image: courseimage1,
-    },
-  ];
+  const [latestCourses, setlatestCourses] = useState(null)
+
+  // const latestCourses = [
+  //   {
+  //     _id: 1,
+  //     category: "WEBDESIGN",
+  //     price: 160,
+  //     instructor: "Stella Blair",
+  //     title: "Learn Web Design",
+  //     image: courseimage1,
+  //   },
+  //   {
+  //     _id: 2,
+  //     category: "DEVELOPMENT",
+  //     price: 340,
+  //     instructor: "Cindy Walker",
+  //     title: "Web Development Tips",
+  //     image: courseimage1,
+  //   },
+  //   {
+  //     _id: 3,
+  //     category: "WORDPRESS",
+  //     price: 640,
+  //     instructor: "David Hutson",
+  //     title: "Latest Web Trends",
+  //     image: courseimage1,
+  //   },
+  //   {
+  //     _id: 4,
+  //     category: "DEVELOPMENT",
+  //     price: 450,
+  //     instructor: "Stella Blair",
+  //     title: "Online Learning Steps",
+  //     image: courseimage1,
+  //   },
+  //   {
+  //     _id: 5,
+  //     category: "WORDPRESS",
+  //     price: 320,
+  //     instructor: "Sophia Rose",
+  //     title: "Be a WordPress Master",
+  //     image: courseimage1,
+  //   },
+  //   {
+  //     _id: 6,
+  //     category: "WEBDESIGN",
+  //     price: 240,
+  //     instructor: "David Hutson",
+  //     title: "Full Stack Developer",
+  //     image: courseimage1,
+  //   },
+  // ];
 
   const [flatestCourses, setFlatestCourses] = useState(latestCourses);
 
@@ -61,8 +66,24 @@ export default function LatestCourses() {
       setFlatestCourses(latestCourses);
       return;
     }
-    setFlatestCourses(latestCourses.filter((course) => course.category === category));
+    setFlatestCourses(latestCourses.filter((course) => course.category.toUpperCase() === category));
   };
+  useEffect(() => {
+    filterCourse("all")
+  }, [latestCourses])
+  
+
+  useEffect(() => {
+    axios
+      .get(`${apiUrl}/user/getCourses`)
+      .then((response) => {
+        console.log(response.data);
+        setlatestCourses(response.data);
+      })
+      .catch((err) => {
+        console.error("Error fetching teachers:", err);
+      });
+  }, []);
 
   return (
     <div id="courses" className="mt-24 pt-8 lg:mt-36">
@@ -85,7 +106,7 @@ export default function LatestCourses() {
 
         {/* course item start */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {flatestCourses.map((el) => (
+          {flatestCourses?.map((el) => (
             <CourseItem course={el} key={el._id} />
           ))}
         </div>

@@ -80,10 +80,10 @@ exports.addTeacher = async (req, res) => {
 
 exports.upcomingCourse = async (req, res) => {
     try {
-        const { category, date, duration, price } = req.body;
+        const { category, date, duration, price,title } = req.body;
         const image = req.files?.image;
 
-        if (!category || !date || !duration || !price || !image) {
+        if (!category || !date || !duration || !price || !image || !title) {
             return res.status(400).send("All fields are required");
         }
 
@@ -103,7 +103,7 @@ exports.upcomingCourse = async (req, res) => {
 
         // console.log(cloudinary_response);
 
-        const teacher = { category, date, duration, price, image: imagePath };
+        const teacher = { category, date, duration, price, title, image: imagePath };
 
         const savedupc = await UpcomingCourse.create(teacher);
 

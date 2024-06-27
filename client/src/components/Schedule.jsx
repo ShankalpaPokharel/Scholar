@@ -1,38 +1,53 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Event from "./Event";
+import { apiUrl } from "../constant/variables";
 
 import courseimage1 from "../assets/course-01.jpg";
 
 export default function Schedule() {
-  const courses = [
-    {
-      _id: 1,
-      category: "WEB DESIGN",
-      title: "UI Best Practices",
-      date: "16 Feb 2036",
-      duration: "22",
-      price: "120",
-      image: courseimage1,
-    },
-    {
-      _id: 2,
-      category: "FRONT END",
-      title: "New Design Trend",
-      date: "24 Feb 2036",
-      duration: "30",
-      price: "320",
-      image: courseimage1,
-    },
-    {
-      _id: 3,
-      category: "FULL STACK",
-      title: "Web Programming",
-      date: "12 Mar 2036",
-      duration: "48",
-      price: "440",
-      image: courseimage1,
-    },
-  ];
+  const [courses, setCourses] = useState(null)
+  // const courses = [
+  //   {
+  //     _id: 1,
+  //     category: "WEB DESIGN",
+  //     title: "UI Best Practices",
+  //     date: "16 Feb 2036",
+  //     duration: "22",
+  //     price: "120",
+  //     image: courseimage1,
+  //   },
+  //   {
+  //     _id: 2,
+  //     category: "FRONT END",
+  //     title: "New Design Trend",
+  //     date: "24 Feb 2036",
+  //     duration: "30",
+  //     price: "320",
+  //     image: courseimage1,
+  //   },
+  //   {
+  //     _id: 3,
+  //     category: "FULL STACK",
+  //     title: "Web Programming",
+  //     date: "12 Mar 2036",
+  //     duration: "48",
+  //     price: "440",
+  //     image: courseimage1,
+  //   },
+  // ];
+
+  useEffect(() => {
+    axios
+      .get(`${apiUrl}/user/getupc`)
+      .then((response) => {
+        console.log(response.data);
+        setCourses(response.data);
+      })
+      .catch((err) => {
+        console.error("Error fetching teachers:", err);
+      });
+  }, []);
 
   return (
     <div className="container mt-28">

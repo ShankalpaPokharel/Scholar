@@ -12,6 +12,7 @@ export default function AddUpcomingCourse() {
     setAddSuccess(false);
 
     const category = e.target.category.value;
+    const title = e.target.title.value;
     const date = e.target.date.value;
     const duration = e.target.duration.value;
     const price = e.target.price.value;
@@ -19,6 +20,7 @@ export default function AddUpcomingCourse() {
 
     const formData = new FormData();
     formData.append('category', category);
+    formData.append('title', title);
     formData.append('date', date);
     formData.append('duration', duration);
     formData.append('price', price);
@@ -50,6 +52,11 @@ export default function AddUpcomingCourse() {
             Category
           </label>
           <input type="text" name="category" id="category" className="mb-2 block w-full min-w-96 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:outline-primary" required />
+          
+          <label htmlFor="title" className="mb-2 block font-medium text-gray-900">
+            Title
+          </label>
+          <input type="text" name="title" id="title" className="mb-2 block w-full min-w-96 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:outline-primary" required />
 
           <label htmlFor="date" className="mb-2 block font-medium text-gray-900">
             Date
