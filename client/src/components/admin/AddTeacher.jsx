@@ -5,10 +5,13 @@ import { apiUrl } from "../../constant/variables";
 
 export default function AddTeacher() {
   const [addSuccess, setAddSuccess] = useState(false);
+  const token = localStorage.getItem("jwt");
 
   const handleSubmit = (e) => {
+    
       e.preventDefault();
       setAddSuccess(false);
+      
 
       const name = e.target.name.value;
       const field = e.target.field.value;
@@ -30,6 +33,7 @@ export default function AddTeacher() {
       axios.post(`${apiUrl}/admin/addTeacher`, formData, {
           headers: {
               'Content-Type': 'multipart/form-data',
+              Authorization: `Bearer ${token}`,
           },
       })
       .then((response) => {

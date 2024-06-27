@@ -5,6 +5,7 @@ import { apiUrl } from "../../constant/variables";
 
 export default function AddCourse() {
   const [addSuccess, setAddSuccess] = useState(false);
+  const token = localStorage.getItem("jwt");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,6 +29,7 @@ export default function AddCourse() {
     axios.post(`${apiUrl}/admin/addCourse`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`,
       },
     })
     .then((response) => {

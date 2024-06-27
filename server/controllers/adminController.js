@@ -148,3 +148,14 @@ exports.login = async (req, res) => {
         res.status(500).json({msg:"Something went wrong, try later", error: err.message });
     }
 };
+
+
+exports.getUser = (req, res) => {
+    const user = {
+        id: "adminid",
+        name: "admin",
+        username: "adminusernaem",
+        email: "admin@gmail.com",
+    };
+    res.status(200).send(user)
+}
