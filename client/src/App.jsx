@@ -8,12 +8,16 @@ import AdminPage from "./pages/AdminPage";
 import { createBrowserRouter, RouterProvider, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import PageNotFound from "./components/PageNotFound";
-import { AddCourse, AddTeacher, AddUpcomingCourse, Welcome } from "./components/admin";
+import { AddCourse, AddTeacher, AddUpcomingCourse, Login, Welcome } from "./components/admin";
 
 const router = createBrowserRouter([
   {
     path: "",
     element: <LandingPage />,
+  },
+  {
+    path:'/login',
+    element:<Login/>
   },
   {
     path: "/admin",

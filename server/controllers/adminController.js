@@ -6,6 +6,8 @@ const Course = require("../models/Course");
 const Teacher = require("../models/teacher");
 const UpcomingCourse = require("../models/Upcomingcourse");
 
+const jwt = require("jsonwebtoken")
+
 exports.addCourse = async (req, res) => {
     try {
         const { category, price, instructor, title } = req.body;
@@ -108,5 +110,41 @@ exports.upcomingCourse = async (req, res) => {
         return res.send({ message: "UPC  added successfully", savedupc });
     } catch (error) {
         return res.status(500).json({ message: "Internal server error", error, success: false });
+    }
+};
+
+exports.login = async (req, res) => {
+    try {
+        const { username, password } = req.body;
+
+        if (!username || !password) {
+            return res.status(400).send("All fields are required");
+        }
+
+        if (username !== process.env.USERNAME) return res.status(400).json({ msg: "Invalid Credentials" });
+
+        let isMatch = false;
+        if (password === process.env.PASSWORDD) {
+            isMatch = true;
+        }
+
+        // console.log("isMatch", isMatch);
+
+        if (!isMatch) return res.status(400).json({ msg: "Invalid Credentials" });
+
+        const payload = {
+            id: "adminid",
+            name: "admin",
+            username: "adminusernaem",
+            email: "admin@gmail.com",
+        };
+
+        const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: process.env.EXPIRE_IN });
+
+        const data = { msg: "Successfully log in", jwt: token };
+        return res.status(200).json(data);
+    } catch (err) {
+        console.log("login catach");
+        res.status(500).json({msg:"Something went wrong, try later", error: err.message });
     }
 };
