@@ -28,8 +28,8 @@ app.get("/", (req, res) => res.send("Express on Vercel"));
 const adminRoutes = require("./routes/admin.routes");
 app.use("/admin", adminRoutes);
 
-// const userRoutes = require('./routes/user.routes');
-// app.use('/api/user', userRoutes);
+const userRoutes = require('./routes/user.routes');
+app.use('/user', userRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 3000;

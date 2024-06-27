@@ -25,6 +25,8 @@ const upcomingCourseSchema = new mongoose.Schema({
     timestamps: true 
 });
 
-const UpcomingCourse = mongoose.model('UpcomingCourse', upcomingCourseSchema);
-
+const UpcomingCourse = mongoose.models.UpcomingCourse || mongoose.model('UpcomingCourse', upcomingCourseSchema);
 module.exports = UpcomingCourse;
+
+
+
