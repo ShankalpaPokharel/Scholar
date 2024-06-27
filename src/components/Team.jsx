@@ -43,7 +43,7 @@ export default function () {
   ];
 
   return (
-    <div className="container pt-36">
+    <div id="team" className="container pt-36">
       <div className="grid grid-cols-1 px-8 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
         {teamMembers.map((el) => (
           <TeamMember member={el} key={el._id}/>

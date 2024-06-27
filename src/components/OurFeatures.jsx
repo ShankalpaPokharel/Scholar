@@ -5,7 +5,7 @@ import service3 from "../assets/service-03.png";
 
 export default function OurFeatures() {
   return (
-    <div className="mt-20 pt-7 lg:mt-32">
+    <div id="services" className="mt-20 pt-7 lg:mt-32">
       <div className="container grid grid-cols-1 gap-4 lg:grid-cols-3">
         {/* item 1  */}
         <div className="relative">

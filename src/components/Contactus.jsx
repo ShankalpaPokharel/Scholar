@@ -4,7 +4,7 @@ import contactdec1 from "../assets/contact-dec-02.png";
 
 export default function () {
   return (
-    <div className="lg:contactus relative mt-16 py-12 lg:mt-20">
+    <div id="register" className="lg:contactus relative mt-16 py-12 lg:mt-20">
       <div className="container flex flex-col lg:flex-row lg:items-center">
         {/* body  */}
         <div className="mb-12 lg:mb-0 lg:mr-28 lg:w-1/2">

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-
+import { NavHashLink as NavLink } from "react-router-hash-link";
 import { FaSearch } from "react-icons/fa";
 import { CgMenuLeft } from "react-icons/cg";
 import { RxCross2 } from "react-icons/rx";
+import { useLocation } from "react-router-dom";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -28,11 +29,18 @@ export default function Navbar() {
     };
   }, []);
 
+  const location = useLocation();
+  const currentHash = location.hash;
+
+  const getLinkClassName = (hash) => {
+    return currentHash === hash ? "rounded-3xl bg-inputbackground p-3" : "text-white";
+  };
+
   return (
     <div className={`${navbarClass} z-20 flex w-full items-center text-white`}>
       {/* container */}
       <div className="container relative z-50 flex items-center">
-        {/* left nav side  */}
+        {/* left nav side */}
         <div className="flex w-full justify-between">
           <div className="flex items-center gap-2">
             <h1 className="text-4xl font-medium">SCHOLAR</h1>
@@ -43,36 +51,47 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* menu icon  */}
+          {/* menu icon */}
           <div className="text-4xl text-white md:hidden" onClick={menuClick}>
             {menuOpen ? <RxCross2 /> : <CgMenuLeft />}
           </div>
         </div>
 
-        {/* right nav side / mobile nav  */}
-        {/* <div
-          className={`absolute left-0 z-[-1] right-0  mx-auto w-full max-w-[540px] rounded-b-3xl bg-secondary text-black transition-all duration-1000 ${menuOpen ? "top-20" : " -top-96"} md:static md:left-auto md:right-auto md:top-auto md:z-auto md:flex md:max-h-[80px] md:w-full md:justify-end md:rounded-none md:bg-transparent md:text-white`}
-        >
-          <ul className="divide-y whitespace-nowrap text-center md:flex md:gap-3 md:divide-y-0 md:font-light [&_li]:py-3">
-            <li className="rounded-3xl bg-inputbackground p-3">Home</li>
-            <li>Services</li>
-            <li>Courses</li>
-            <li>Team</li>
-            <li>Events</li>
-            <li className="">Register Now!</li>
-          </ul>
-        </div> */}
-
+        {/* right nav side / mobile nav */}
         <div
           className={`top absolute left-0 right-0 top-[70px] z-10 mx-auto w-full max-w-[540px] rounded-b-3xl bg-secondary text-black transition-all duration-1000 md:static md:left-auto md:right-auto md:top-auto md:z-auto md:flex md:max-h-[80px] md:w-full md:justify-end md:rounded-none md:bg-transparent md:text-white ${menuOpen ? "" : "hidden md:block"}`}
         >
           <ul className="divide-y whitespace-nowrap text-center md:flex md:gap-3 md:divide-y-0 md:font-light [&_li]:py-3">
-            <li className="rounded-3xl bg-inputbackground p-3">Home</li>
-            <li>Services</li>
-            <li>Courses</li>
-            <li>Team</li>
-            <li>Events</li>
-            <li className="">Register Now!</li>
+            <li className="">
+              <NavLink smooth to="#home" className={getLinkClassName("#home")}>
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink smooth to="#services" className={getLinkClassName("#services")}>
+                Services
+              </NavLink>
+            </li>
+            <li>
+              <NavLink smooth to="#courses" className={getLinkClassName("#courses")}>
+                Courses
+              </NavLink>
+            </li>
+            <li>
+              <NavLink smooth to="#team" className={getLinkClassName("#team")}>
+                Team
+              </NavLink>
+            </li>
+            <li>
+              <NavLink smooth to="#events" className={getLinkClassName("#events")}>
+                Events
+              </NavLink>
+            </li>
+            <li>
+              <NavLink smooth to="#register" className={getLinkClassName("#register")}>
+                Register Now!
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>

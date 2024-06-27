@@ -71,7 +71,7 @@ export default function HeroPart() {
   };
 
   return (
-    <div className="container relative pt-28 lg:pt-40">
+    <div id="home" className="container relative pt-28 lg:pt-40">
       <Slider {...settings} className="lg:ml-[130px]" ref={sliderRef}>
         {bannerData.map((el) => (
           <Banner key={el.id} banner={el} />

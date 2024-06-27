@@ -1,6 +1,7 @@
 import React from "react";
 import { Aboutus, Contactus, Facts, Footer, HeroPart, LatestCourses, Navbar, OurFeatures, Schedule, Team, Testimonials } from "../components";
 
+
 export default function LandingPage() {
   return (
     <>

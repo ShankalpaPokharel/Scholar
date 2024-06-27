@@ -65,7 +65,7 @@ export default function LatestCourses() {
   };
 
   return (
-    <div className="mt-24 pt-8 lg:mt-36">
+    <div id="courses" className="mt-24 pt-8 lg:mt-36">
       <div className="container">
         {/* heading part */}
         <div className="mb-14 text-center">
