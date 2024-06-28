@@ -3,6 +3,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const fileUpload = require("express-fileupload");
 const path = require("path");
+
 const connectDB = require("./config/db");
 
 // Load environment variables
@@ -28,8 +29,8 @@ app.get("/", (req, res) => res.send("Express on Vercel"));
 const adminRoutes = require("./routes/admin.routes");
 app.use("/admin", adminRoutes);
 
-const userRoutes = require('./routes/user.routes');
-app.use('/user', userRoutes);
+const userRoutes = require("./routes/user.routes");
+app.use("/user", userRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 3000;
