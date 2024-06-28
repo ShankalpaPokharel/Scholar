@@ -2,9 +2,9 @@ const { uploadOnCloudinary } = require("../utils/cloudinary");
 const fs = require("fs");
 const path = require("path");
 
-const Course = require("../models/Course");
-const Teacher = require("../models/teacher");
-const UpcomingCourse = require("../models/Upcomingcourse");
+const Course = require("../models/Course.models");
+const Teacher = require("../models/Teacher.models");
+const UpcomingCourse = require("../models/Upcomingcourse.models");
 
 const jwt = require("jsonwebtoken")
 

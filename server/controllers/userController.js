@@ -1,6 +1,6 @@
-const Course = require("../models/Course");
-const Teacher = require("../models/Teacher")
-const UpcomingCourse = require("../models/UpcomingCourse");
+const Course = require("../models/Course.models");
+const Teacher = require("../models/Teacher.models")
+const UpcomingCourse = require("../models/Upcomingcourse.models");
 
 exports.getCourses = async (req, res) => {
     try {
