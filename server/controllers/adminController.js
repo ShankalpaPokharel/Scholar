@@ -8,6 +8,15 @@ const UpcomingCourse = require("../models/Upcomingcourse.models");
 
 const jwt = require("jsonwebtoken")
 
+// Function to ensure the uploads directory exists
+const ensureUploadsDirectoryExists = () => {
+    const uploadsDir = path.join(__dirname, "../uploads");
+    if (!fs.existsSync(uploadsDir)) {
+        fs.mkdirSync(uploadsDir);
+    }
+};
+
+
 exports.addCourse = async (req, res) => {
     try {
         const { category, price, instructor, title } = req.body;
@@ -16,6 +25,8 @@ exports.addCourse = async (req, res) => {
         if (!category || !price || !instructor || !title || !image) {
             return res.status(400).send("All fields are required");
         }
+
+        ensureUploadsDirectoryExists();
 
         let rootPath = path.resolve(); // Get root path
         let fileName = Date.now() + Math.random().toString(36).substring(2, 10); // Generate unique filename
@@ -52,7 +63,7 @@ exports.addTeacher = async (req, res) => {
         if (!name || !field || !image) {
             return res.status(400).send("Name, field, and image are required");
         }
-
+        ensureUploadsDirectoryExists();
         let rootPath = path.resolve(); // Get root path
         let fileName = Date.now() + Math.random().toString(36).substring(2, 10); // Generate unique filename
         imagePath = path.join("/", "uploads", `${fileName}-${req.files.image.name}`); // Create image path
@@ -88,7 +99,7 @@ exports.upcomingCourse = async (req, res) => {
         if (!category || !date || !duration || !price || !image || !title) {
             return res.status(400).send("All fields are required");
         }
-
+        ensureUploadsDirectoryExists();
         let rootPath = path.resolve(); // Get root path
         let fileName = Date.now() + Math.random().toString(36).substring(2, 10); // Generate unique filename
         imagePath = path.join("/", "uploads", `${fileName}-${req.files.image.name}`); // Create image path
