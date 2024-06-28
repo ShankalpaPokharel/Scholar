@@ -6,16 +6,7 @@ const Course = require("../models/Course.models");
 const Teacher = require("../models/Teacher.models");
 const UpcomingCourse = require("../models/Upcomingcourse.models");
 
-const jwt = require("jsonwebtoken")
-
-// Function to ensure the uploads directory exists
-const ensureUploadsDirectoryExists = () => {
-    const uploadsDir = path.join(__dirname, "../uploads");
-    if (!fs.existsSync(uploadsDir)) {
-        fs.mkdirSync(uploadsDir);
-    }
-};
-
+const jwt = require("jsonwebtoken");
 
 exports.addCourse = async (req, res) => {
     try {
@@ -26,23 +17,9 @@ exports.addCourse = async (req, res) => {
             return res.status(400).send("All fields are required");
         }
 
-        ensureUploadsDirectoryExists();
+        const cloudinary_response = await uploadOnCloudinary(image.data);
 
-        let rootPath = path.resolve(); // Get root path
-        let fileName = Date.now() + Math.random().toString(36).substring(2, 10); // Generate unique filename
-        imagePath = path.join("/", "uploads", `${fileName}-${req.files.image.name}`); // Create image path
-        // console.log(imagePath);
-
-        const filePath = path.join(rootPath, imagePath); // Create file path
-        await req.files.image.mv(filePath); // Move uploaded image to file path
-
-        // Upload image to Cloudinary
-        const cloudinary_response = await uploadOnCloudinary(filePath);
-
-        fs.unlinkSync(filePath); // Delete temporary file
-        imagePath = cloudinary_response.secure_url; // Set image path to Cloudinary URL
-
-        // console.log(cloudinary_response);
+        const imagePath = cloudinary_response.secure_url;
 
         const course = { category, price, instructor, title, image: imagePath };
 
@@ -50,46 +27,11 @@ exports.addCourse = async (req, res) => {
 
         return res.send({ message: "Course added successfully", savedCourse });
     } catch (error) {
-        console.log(error)
+        console.log(error);
         return res.status(500).json({ message: "Internal server error", error, success: false });
     }
 };
 
-// exports.addTeacher = async (req, res) => {
-//     try {
-//         const { name, field, facebook, twitter, linkedin } = req.body;
-//         const image = req.files?.image;
-
-//         if (!name || !field || !image) {
-//             return res.status(400).send("Name, field, and image are required");
-//         }
-//         ensureUploadsDirectoryExists();
-//         let rootPath = path.resolve(); // Get root path
-//         let fileName = Date.now() + Math.random().toString(36).substring(2, 10); // Generate unique filename
-//         imagePath = path.join("/", "uploads", `${fileName}-${req.files.image.name}`); // Create image path
-//         // console.log(imagePath);
-
-//         const filePath = path.join(rootPath, imagePath); // Create file path
-//         await req.files.image.mv(filePath); // Move uploaded image to file path
-
-//         // Upload image to Cloudinary
-//         const cloudinary_response = await uploadOnCloudinary(filePath);
-
-//         fs.unlinkSync(filePath); // Delete temporary file
-//         imagePath = cloudinary_response.secure_url; // Set image path to Cloudinary URL
-
-//         // console.log(cloudinary_response);
-
-//         const teacher = { name, field, facebook, twitter, linkedin, image: imagePath };
-
-//         const savedTeacher = await Teacher.create(teacher);
-
-//         return res.send({ message: "Teacher added successfully", savedTeacher });
-//     } catch (error) {
-//         console.log("addteacher errror",error)
-//         return res.status(500).json({ message: "Internal server error", error, success: false });
-//     }
-// };
 exports.addTeacher = async (req, res) => {
     try {
         const { name, field, facebook, twitter, linkedin } = req.body;
@@ -99,12 +41,11 @@ exports.addTeacher = async (req, res) => {
             return res.status(400).send("Name, field, and image are required");
         }
 
-        // Upload image directly to Cloudinary
-        const cloudinary_response = await uploadOnCloudinary(image.data); // Assuming image.data contains the file data
+        const cloudinary_response = await uploadOnCloudinary(image.data);
 
-        const imageUrl = cloudinary_response.secure_url;
+        const imagePath = cloudinary_response.secure_url;
 
-        const teacher = { name, field, facebook, twitter, linkedin, image: imageUrl };
+        const teacher = { name, field, facebook, twitter, linkedin, image: imagePath };
 
         const savedTeacher = await Teacher.create(teacher);
 
@@ -117,28 +58,16 @@ exports.addTeacher = async (req, res) => {
 
 exports.upcomingCourse = async (req, res) => {
     try {
-        const { category, date, duration, price,title } = req.body;
+        const { category, date, duration, price, title } = req.body;
         const image = req.files?.image;
 
         if (!category || !date || !duration || !price || !image || !title) {
             return res.status(400).send("All fields are required");
         }
-        ensureUploadsDirectoryExists();
-        let rootPath = path.resolve(); // Get root path
-        let fileName = Date.now() + Math.random().toString(36).substring(2, 10); // Generate unique filename
-        imagePath = path.join("/", "uploads", `${fileName}-${req.files.image.name}`); // Create image path
-        // console.log(imagePath);
 
-        const filePath = path.join(rootPath, imagePath); // Create file path
-        await req.files.image.mv(filePath); // Move uploaded image to file path
+        const cloudinary_response = await uploadOnCloudinary(image.data);
 
-        // Upload image to Cloudinary
-        const cloudinary_response = await uploadOnCloudinary(filePath);
-
-        fs.unlinkSync(filePath); // Delete temporary file
-        imagePath = cloudinary_response.secure_url; // Set image path to Cloudinary URL
-
-        // console.log(cloudinary_response);
+        const imagePath = cloudinary_response.secure_url;
 
         const teacher = { category, date, duration, price, title, image: imagePath };
 
@@ -182,10 +111,9 @@ exports.login = async (req, res) => {
         return res.status(200).json(data);
     } catch (err) {
         console.log("login catach");
-        res.status(500).json({msg:"Something went wrong, try later", error: err.message });
+        res.status(500).json({ msg: "Something went wrong, try later", error: err.message });
     }
 };
-
 
 exports.getUser = (req, res) => {
     const user = {
@@ -194,5 +122,41 @@ exports.getUser = (req, res) => {
         username: "adminusernaem",
         email: "admin@gmail.com",
     };
-    res.status(200).send(user)
-}
+    res.status(200).send(user);
+};
+
+// exports.addTeacher = async (req, res) => {
+//     try {
+//         const { name, field, facebook, twitter, linkedin } = req.body;
+//         const image = req.files?.image;
+
+//         if (!name || !field || !image) {
+//             return res.status(400).send("Name, field, and image are required");
+//         }
+//         ensureUploadsDirectoryExists();
+//         let rootPath = path.resolve(); // Get root path
+//         let fileName = Date.now() + Math.random().toString(36).substring(2, 10); // Generate unique filename
+//         imagePath = path.join("/", "uploads", `${fileName}-${req.files.image.name}`); // Create image path
+//         // console.log(imagePath);
+
+//         const filePath = path.join(rootPath, imagePath); // Create file path
+//         await req.files.image.mv(filePath); // Move uploaded image to file path
+
+//         // Upload image to Cloudinary
+//         const cloudinary_response = await uploadOnCloudinary(filePath);
+
+//         fs.unlinkSync(filePath); // Delete temporary file
+//         imagePath = cloudinary_response.secure_url; // Set image path to Cloudinary URL
+
+//         // console.log(cloudinary_response);
+
+//         const teacher = { name, field, facebook, twitter, linkedin, image: imagePath };
+
+//         const savedTeacher = await Teacher.create(teacher);
+
+//         return res.send({ message: "Teacher added successfully", savedTeacher });
+//     } catch (error) {
+//         console.log("addteacher errror",error)
+//         return res.status(500).json({ message: "Internal server error", error, success: false });
+//     }
+// };
