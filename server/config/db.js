@@ -2,10 +2,7 @@ const mongoose = require("mongoose");
 
 const connectDB = async () => {
     try {
-        await mongoose.connect(`${process.env.PRODUCTION === "true" ? process.env.MONGODB_URI : "mongodb://localhost:27017/scholar"}`, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
+        await mongoose.connect(`${process.env.PRODUCTION === "true" ? process.env.MONGODB_URI : "mongodb://localhost:27017/scholar"}`);
     } catch (err) {
         console.error(err.message);
         process.exit(1);
