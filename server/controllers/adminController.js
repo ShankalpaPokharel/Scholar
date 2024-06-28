@@ -39,6 +39,7 @@ exports.addCourse = async (req, res) => {
 
         return res.send({ message: "Course added successfully", savedCourse });
     } catch (error) {
+        console.log(error)
         return res.status(500).json({ message: "Internal server error", error, success: false });
     }
 };
@@ -74,6 +75,7 @@ exports.addTeacher = async (req, res) => {
 
         return res.send({ message: "Teacher added successfully", savedTeacher });
     } catch (error) {
+        console.log("addteacher errror",error)
         return res.status(500).json({ message: "Internal server error", error, success: false });
     }
 };
