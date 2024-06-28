@@ -55,6 +55,41 @@ exports.addCourse = async (req, res) => {
     }
 };
 
+// exports.addTeacher = async (req, res) => {
+//     try {
+//         const { name, field, facebook, twitter, linkedin } = req.body;
+//         const image = req.files?.image;
+
+//         if (!name || !field || !image) {
+//             return res.status(400).send("Name, field, and image are required");
+//         }
+//         ensureUploadsDirectoryExists();
+//         let rootPath = path.resolve(); // Get root path
+//         let fileName = Date.now() + Math.random().toString(36).substring(2, 10); // Generate unique filename
+//         imagePath = path.join("/", "uploads", `${fileName}-${req.files.image.name}`); // Create image path
+//         // console.log(imagePath);
+
+//         const filePath = path.join(rootPath, imagePath); // Create file path
+//         await req.files.image.mv(filePath); // Move uploaded image to file path
+
+//         // Upload image to Cloudinary
+//         const cloudinary_response = await uploadOnCloudinary(filePath);
+
+//         fs.unlinkSync(filePath); // Delete temporary file
+//         imagePath = cloudinary_response.secure_url; // Set image path to Cloudinary URL
+
+//         // console.log(cloudinary_response);
+
+//         const teacher = { name, field, facebook, twitter, linkedin, image: imagePath };
+
+//         const savedTeacher = await Teacher.create(teacher);
+
+//         return res.send({ message: "Teacher added successfully", savedTeacher });
+//     } catch (error) {
+//         console.log("addteacher errror",error)
+//         return res.status(500).json({ message: "Internal server error", error, success: false });
+//     }
+// };
 exports.addTeacher = async (req, res) => {
     try {
         const { name, field, facebook, twitter, linkedin } = req.body;
@@ -63,30 +98,19 @@ exports.addTeacher = async (req, res) => {
         if (!name || !field || !image) {
             return res.status(400).send("Name, field, and image are required");
         }
-        ensureUploadsDirectoryExists();
-        let rootPath = path.resolve(); // Get root path
-        let fileName = Date.now() + Math.random().toString(36).substring(2, 10); // Generate unique filename
-        imagePath = path.join("/", "uploads", `${fileName}-${req.files.image.name}`); // Create image path
-        // console.log(imagePath);
 
-        const filePath = path.join(rootPath, imagePath); // Create file path
-        await req.files.image.mv(filePath); // Move uploaded image to file path
+        // Upload image directly to Cloudinary
+        const cloudinary_response = await uploadOnCloudinary(image.data); // Assuming image.data contains the file data
 
-        // Upload image to Cloudinary
-        const cloudinary_response = await uploadOnCloudinary(filePath);
+        const imageUrl = cloudinary_response.secure_url;
 
-        fs.unlinkSync(filePath); // Delete temporary file
-        imagePath = cloudinary_response.secure_url; // Set image path to Cloudinary URL
-
-        // console.log(cloudinary_response);
-
-        const teacher = { name, field, facebook, twitter, linkedin, image: imagePath };
+        const teacher = { name, field, facebook, twitter, linkedin, image: imageUrl };
 
         const savedTeacher = await Teacher.create(teacher);
 
         return res.send({ message: "Teacher added successfully", savedTeacher });
     } catch (error) {
-        console.log("addteacher errror",error)
+        console.log("addteacher error", error);
         return res.status(500).json({ message: "Internal server error", error, success: false });
     }
 };
